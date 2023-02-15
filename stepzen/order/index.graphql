@@ -1,0 +1,36 @@
+type Order {
+  Address: String
+  City: String
+  Lat: Float
+  Lng: Float
+  carrier: String
+  createdAt: Date
+  shippingCost: Int
+  trackingId: String
+  # TrackingItems
+  trackingItems: TrackingItems
+    @materializer(
+      query: "getTrackingItemById"
+      arguments: [{ name: "id", field: "trackingId" }]
+    )
+}
+
+type OrderList {
+  name: ID
+  value: Order
+}
+
+type Query {
+  getOrderById(id: ID): Order
+    @rest(
+      endpoint: "https://synthparcel-app-default-rtdb.firebaseio.com/orders/$id.json"
+    )
+}
+
+type Query {
+  getOrders: [OrderList]
+    @rest(
+      endpoint: "https://synthparcel-app-default-rtdb.firebaseio.com/orders.json"
+      transforms: [{ pathpattern: [], editor: "objectToArray" }]
+    )
+}

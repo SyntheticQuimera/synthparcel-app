@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import RootNavigator from './Navigator/RootNavigator';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import RootNavigator from "./Navigator/RootNavigator";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 const client = new ApolloClient({
-  uri: 'http://192.168.0.7:5001/',
+  uri: "http://192.168.0.6:5001/",
   cache: new InMemoryCache(),
 });
 
